@@ -135,7 +135,7 @@ public class TicketController {
     public ResponseEntity<ApiResponse<List<Ticket>>> searchByName(@RequestParam String passengerName) {
 
         var res = TICKETS.stream()
-                .filter(t -> t.getPassengerName().equals(passengerName))
+                .filter(t -> t.getPassengerName().toLowerCase().contains(passengerName.toLowerCase()))
                 .toList();
         return ResponseEntity.ok(ApiResponse.success(
                 res,
